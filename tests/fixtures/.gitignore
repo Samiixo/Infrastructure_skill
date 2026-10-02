@@ -1,0 +1,6 @@
+# Test scratch output. Fixture markdown must stay visible to git:
+# a committed fixture is a real assertion input, not a build artefact.
+*.log
+__pycache__/
+*.pyc
+.cache/

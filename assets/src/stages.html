@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1600px; height:900px; background:#090909; font-family:'Segoe UI',system-ui,sans-serif; color:#f2f2f2; padding:50px 66px; }
+  h2 { font-size:42px; font-weight:700; letter-spacing:-.02em; }
+  .lead { margin-top:10px; font-size:20px; font-weight:300; color:#8a8a8a; }
+  .flow { margin-top:40px; display:flex; align-items:stretch; gap:0; }
+  .st { flex:1; border:1px solid #232323; padding:20px 16px; display:flex; flex-direction:column; }
+  .st + .st { border-left:none; }
+  .st.hot { border-color:#D6FF00; }
+  .n { font-family:Consolas,monospace; font-size:15px; color:#D6FF00; }
+  .t { margin-top:10px; font-size:20px; font-weight:600; line-height:1.2; }
+  .d { margin-top:10px; font-size:15px; font-weight:300; color:#8f8f8f; line-height:1.45; flex:1; }
+  .g { margin-top:14px; font-family:Consolas,monospace; font-size:12px; color:#6e6e6e; border-top:1px solid #1e1e1e; padding-top:11px; }
+  .gate { margin-top:30px; border:1px solid #D6FF00; padding:20px 26px; display:flex; gap:30px; align-items:center; }
+  .gt { font-size:22px; font-weight:600; color:#D6FF00; white-space:nowrap; }
+  .gd { font-size:17px; font-weight:300; color:#cfcfcf; line-height:1.5; }
+  .cols { margin-top:32px; display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .box { border:1px solid #232323; padding:22px 24px; }
+  .bh { font-size:19px; font-weight:600; }
+  .bh span { color:#D6FF00; }
+  .bl { margin-top:12px; font-size:16px; font-weight:300; color:#8f8f8f; line-height:1.55; }
+  .bl code { font-family:Consolas,monospace; font-size:15px; color:#D6FF00; }
+</style></head><body>
+  <h2>Шесть этапов, каждый закрывается человеком</h2>
+  <div class="lead">Объединять этапы и забегать вперёд нельзя. Можно сказать, что будет дальше, но не начинать.</div>
+  <div class="flow">
+    <div class="st"><div class="n">01</div><div class="t">Название</div><div class="d">3-5 вариантов, риски, позиционирование, 3-5 ценностей</div><div class="g">stage1-naming</div></div>
+    <div class="st hot"><div class="n">02</div><div class="t">Стек</div><div class="d">13 слоёв, у каждого: почему, 2+ отклонённые альтернативы, путь x10</div><div class="g">stage2-stack</div></div>
+    <div class="st"><div class="n">03</div><div class="t">Документация</div><div class="d">8 документов, включая ADR и capability ledger</div><div class="g">stage3-docs</div></div>
+    <div class="st"><div class="n">04</div><div class="t">Брендбук</div><div class="d">Палитра, типографика, tone of voice, базовые UI-принципы</div><div class="g">stage4-brandbook</div></div>
+    <div class="st"><div class="n">05</div><div class="t">Прототип</div><div class="d">HTML/CSS/JS без сборки, 2-4 ключевых экрана</div><div class="g">stage5-prototype</div></div>
+    <div class="st hot"><div class="n">06</div><div class="t">Roadmap API</div><div class="d">Порядок зависимостей, а не удобства. Без "заглушка, потом заменим"</div><div class="g">stage6-roadmap</div></div>
+  </div>
+  <div class="gate">
+    <div class="gt">GATE</div>
+    <div class="gd">После каждого этапа агент останавливается и ждёт явного подтверждения. Приоритет при конфликте требований: качество и архитектурная корректность важнее скорости. "Быстрый, но грязный" - только как помеченная альтернатива, никогда как рекомендация.</div>
+  </div>
+  <div class="cols">
+    <div class="box"><div class="bh">Жёсткие <span>constraints</span></div><div class="bl">Мультиплатформенность, 1000+ активных, конкурентность, OWASP, DDoS, слои, без заглушек в проде, <code>данные только в РФ</code>, соло-разработчик, локально → боевой, публичный SEO против CSR, без раннего deferred.</div></div>
+    <div class="box"><div class="bh">Проверяемость <span>вместо отчёта</span></div><div class="bl">v1 был промтом на 400 строк: агент мог отчитаться словами, оставив ключевые решения за кадром. Теперь <code>python tools/doctor.py</code> показывает, что именно не зафиксировано, и <code>data_residency</code> падает в первую очередь.</div></div>
+  </div>
+</body></html>

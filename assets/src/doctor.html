@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1600px; height:900px; background:#090909; font-family:'Segoe UI',system-ui,sans-serif; color:#f2f2f2; padding:50px 66px; }
+  h2 { font-size:42px; font-weight:700; letter-spacing:-.02em; }
+  .lead { margin-top:10px; font-size:20px; font-weight:300; color:#8a8a8a; }
+  table { margin-top:34px; width:100%; border-collapse:collapse; }
+  th { text-align:left; font-family:Consolas,monospace; font-size:14px; letter-spacing:.14em; text-transform:uppercase; color:#6e6e6e; padding:0 16px 14px 0; border-bottom:1px solid #262626; font-weight:400; }
+  td { padding:15px 16px 15px 0; border-bottom:1px solid #1a1a1a; font-size:17px; font-weight:300; color:#b9b9b9; vertical-align:top; line-height:1.45; }
+  tr.hot td { color:#f2f2f2; }
+  td.id { font-family:Consolas,monospace; font-size:15px; color:#D6FF00; white-space:nowrap; width:250px; }
+  td.lvl { font-family:Consolas,monospace; font-size:14px; white-space:nowrap; width:110px; }
+  .fail { color:#ff6b6b; }
+  .warn { color:#ffb84d; }
+  .note { margin-top:30px; display:flex; gap:20px; }
+  .n1 { flex:1; border:1px solid #232323; padding:20px 24px; }
+  .n1 h3 { font-size:18px; font-weight:600; margin-bottom:10px; }
+  .n1 p { font-size:15px; font-weight:300; color:#8f8f8f; line-height:1.55; }
+  .n1.hot { border-color:#D6FF00; }
+  .n1.hot h3 { color:#D6FF00; }
+</style></head><body>
+  <h2>Что именно проверяет doctor</h2>
+  <div class="lead">Обратная задача линтера: не «всё хорошо», а «это решение не зафиксировано, и вы узнаете о нём через полгода».</div>
+  <table>
+    <tr><th>Проверка</th><th>Уровень</th><th>Что означает провал</th></tr>
+    <tr class="hot"><td class="id">data_residency</td><td class="lvl fail">FAIL</td><td>Не сказано, что персональные данные лежат на серверах в РФ. Самое дорогое по последствиям</td></tr>
+    <tr class="hot"><td class="id">pdn_law</td><td class="lvl fail">FAIL</td><td>Нет 152-ФЗ в SECURITY.md, либо платёжный провайдер зарубежный при российской юрисдикции</td></tr>
+    <tr><td class="id">overengineering_thresholds</td><td class="lvl fail">FAIL</td><td>Kubernetes, Kafka, микросервисы упомянуты без порога включения. Амбиция вместо решения</td></tr>
+    <tr><td class="id">backup_restore</td><td class="lvl fail">FAIL</td><td>Нет истории восстановления, нет RPO/RTO. Бэкап, который не проверяли, - это его отсутствие</td></tr>
+    <tr><td class="id">no_stubs_in_prod</td><td class="lvl fail">FAIL</td><td>В плане продакшена «заглушка, потом заменим»</td></tr>
+    <tr><td class="id">alternatives_rejected</td><td class="lvl fail">FAIL</td><td>Не отклонено ни одной альтернативы. Значит, никто ничего не сравнивал</td></tr>
+    <tr><td class="id">local_to_prod</td><td class="lvl fail">FAIL</td><td>Нет перехода локально → боевой: что меняется, что нет, каким тестом проверяется</td></tr>
+    <tr><td class="id">public_vs_authed</td><td class="lvl fail">FAIL</td><td>Не решено, есть ли публичный SEO-слой. Дорогое решение, о котором забывают</td></tr>
+    <tr><td class="id">deferred_ledger</td><td class="lvl fail">FAIL</td><td>Нет ledger: что в скоупе, что отложено и почему, что под отложенное уже заложено</td></tr>
+    <tr><td class="id">cost_model</td><td class="lvl warn">WARN</td><td>Нет стоимости на пользователя. Проект не ломается, но соло-разработчика это убьёт</td></tr>
+    <tr><td class="id">adrs</td><td class="lvl warn">WARN</td><td>Меньше трёх записей ADR. Через полгода «а почему мы выбрали X» останется без ответа</td></tr>
+  </table>
+  <div class="note">
+    <div class="n1 hot"><h3>Каждый FAIL говорит, что делать</h3><p>Инструмент не ругает, а выдаёт конкретное следующее действие. Список пробелов без подсказки всё равно игнорируют.</p></div>
+    <div class="n1"><h3>Эвристики помечены как эвристики</h3><p>Проверки по тексту не являются доказательством. То, что помечено эвристикой, выводится с честной пометкой и списком совпадений, а не как PASS.</p></div>
+    <div class="n1"><h3>--jurisdiction none</h3><p>Для проекта вне РФ: проверки локализации становятся WARN с объяснением, а не молчаливый обход. Решение остаётся зафиксированным.</p></div>
+  </div>
+</body></html>

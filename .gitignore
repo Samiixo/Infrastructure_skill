@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Test and tool artifacts
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temp scratch. Fixtures are generated at runtime and must not be committed.
+tmp/
+*.tmp
+*.bak
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# NOTE: tests/fixtures/ IS tracked, and so is docs/PROMPT_v1_original.md.
+# Do not add a rule that would ignore the fixture markdown or the v1 original.
